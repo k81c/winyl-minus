@@ -147,22 +147,22 @@ bool LibAudio::Init(WinylWnd* wnd, int driver, int device, bool isBit32, bool is
 	BASS_SetConfig(BASS_CONFIG_BUFFER, Buffer::DirectSound); // DirectSound buffer size (1000 ms should be enought to preload track)
 	BASS_SetConfig(BASS_CONFIG_NET_PLAYLIST, 1);
 	BASS_SetConfig(BASS_CONFIG_ASYNCFILE_BUFFER, Buffer::BassRead); // default is 65536
-	BASS_SetConfig(BASS_CONFIG_SRC, 2); // for WASAPI mixer if freq is not supported, default is 1
+	BASS_SetConfig(BASS_CONFIG_SRC, 4); // for WASAPI mixer if freq is not supported, default is 1
 	//if (!isBassFX) BASS_SetConfig(BASS_CONFIG_FLOATDSP, TRUE);
 
 	if (wnd) // if wnd == nullptr then ReInit and we don't need to load plugins again
 	{
 #ifndef NDEBUG
-#ifndef _WIN64
-		programPath.append(L"x86\\");
-#else
-		programPath.append(L"x64\\");
-#endif // _WIN64
+// #ifndef _WIN64
+// 		programPath.append(L"x86\\");
+// #else
+// 		programPath.append(L"x64\\");
+// #endif // _WIN64
 #endif  NDEBUG
 		
 		// Load BASS format plugins (WAV, MP3, OGG, AIFF included in BASS)
 		verify(BASS_PluginLoad((const char*)(programPath + L"Bass\\bassflac.dll").c_str(), BASS_UNICODE));
-		verify(BASS_PluginLoad((const char*)(programPath + L"Bass\\bass_ape.dll").c_str(), BASS_UNICODE));
+		verify(BASS_PluginLoad((const char*)(programPath + L"Bass\\bassape.dll").c_str(), BASS_UNICODE));
 		verify(BASS_PluginLoad((const char*)(programPath + L"Bass\\basswma.dll").c_str(), BASS_UNICODE));
 		verify(BASS_PluginLoad((const char*)(programPath + L"Bass\\bass_aac.dll").c_str(), BASS_UNICODE));
 		verify(BASS_PluginLoad((const char*)(programPath + L"Bass\\bassalac.dll").c_str(), BASS_UNICODE));

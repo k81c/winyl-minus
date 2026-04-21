@@ -349,10 +349,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\AudioLog.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\AudioLogWnd.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
