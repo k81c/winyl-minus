@@ -1,4 +1,4 @@
-v3.4.0 [WIP]
+v3.4.0 [2026-04-22]
 
 - Forked from Winyl v3.3.1. Project renamed to Winyl minus.
 - ビルド環境をVS2022に更新、基本的にWindows 10以降に動作環境を限定
