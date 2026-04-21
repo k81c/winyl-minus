@@ -18,7 +18,6 @@
 #include "stdafx.h"
 #include "TagLibReader.h"
 #include "UTF.h"
-#define TAGLIB_STATIC
 #include "taglib/tag.h"
 #include "taglib/fileref.h"
 #include "taglib/tfilestream.h"
@@ -717,8 +716,8 @@ void TagLibReader::ReadMP4Tags(TagLib::MP4::Tag* tag)
 
 bool TagLibReader::ReadMP4TagItemText(TagLib::MP4::Tag* tag, char* id, std::string& outText, std::vector<std::string>* outArray)
 {
-	const TagLib::MP4::ItemListMap& mapItems = tag->itemMap();
-	TagLib::MP4::ItemListMap::ConstIterator itmap = mapItems.find(id);
+	const auto& mapItems = tag->itemMap();
+	auto itmap = mapItems.find(id);
 	if (itmap != mapItems.end())
 	{
 		const TagLib::MP4::Item& item = itmap->second;
@@ -746,8 +745,8 @@ bool TagLibReader::ReadMP4TagItemText(TagLib::MP4::Tag* tag, char* id, std::stri
 
 bool TagLibReader::ReadMP4TagItemIntPair(TagLib::MP4::Tag* tag, char* id, std::string& outText1, std::string& outText2)
 {
-	const TagLib::MP4::ItemListMap& mapItems = tag->itemMap();
-	TagLib::MP4::ItemListMap::ConstIterator itmap = mapItems.find(id);
+	const auto& mapItems = tag->itemMap();
+	auto itmap = mapItems.find(id);
 	if (itmap != mapItems.end())
 	{
 		const TagLib::MP4::Item& item = itmap->second;
@@ -767,8 +766,8 @@ bool TagLibReader::ReadMP4TagItemIntPair(TagLib::MP4::Tag* tag, char* id, std::s
 
 bool TagLibReader::ReadMP4TagItemInt(TagLib::MP4::Tag* tag, char* id, std::string& outText)
 {
-	const TagLib::MP4::ItemListMap& mapItems = tag->itemMap();
-	TagLib::MP4::ItemListMap::ConstIterator itmap = mapItems.find(id);
+	const auto& mapItems = tag->itemMap();
+	auto itmap = mapItems.find(id);
 	if (itmap != mapItems.end())
 	{
 		const TagLib::MP4::Item& item = itmap->second;
@@ -787,8 +786,8 @@ bool TagLibReader::ReadMP4TagItemInt(TagLib::MP4::Tag* tag, char* id, std::strin
 
 bool TagLibReader::ReadMP4TagItemBool(TagLib::MP4::Tag* tag, char* id, std::string& outText)
 {
-	const TagLib::MP4::ItemListMap& mapItems = tag->itemMap();
-	TagLib::MP4::ItemListMap::ConstIterator itmap = mapItems.find(id);
+	const auto& mapItems = tag->itemMap();
+	auto itmap = mapItems.find(id);
 	if (itmap != mapItems.end())
 	{
 		const TagLib::MP4::Item& item = itmap->second;
@@ -853,7 +852,7 @@ TagLibReader::File::File(const std::wstring& file, bool openReadOnly, bool readA
 		// Similar to createInternal function in taglib fileref.cpp
 
 		if (ext == L"mp3")
-			filePtr.reset(new TagLib::MPEG::File(ioStream, TagLib::ID3v2::FrameFactory::instance(), readAudioProperties, audioPropertiesStyle));
+			filePtr.reset(new TagLib::MPEG::File(ioStream, readAudioProperties, audioPropertiesStyle, TagLib::ID3v2::FrameFactory::instance()));
 		else if (ext == L"ogg")
 			filePtr.reset(new TagLib::Ogg::Vorbis::File(ioStream, readAudioProperties, audioPropertiesStyle));
 		else if (ext == L"oga")
@@ -866,7 +865,7 @@ TagLibReader::File::File(const std::wstring& file, bool openReadOnly, bool readA
 			}
 		}
 		else if (ext == L"flac" || ext == L"fla")
-			filePtr.reset(new TagLib::FLAC::File(ioStream, TagLib::ID3v2::FrameFactory::instance(), readAudioProperties, audioPropertiesStyle));
+			filePtr.reset(new TagLib::FLAC::File(ioStream, readAudioProperties, audioPropertiesStyle, TagLib::ID3v2::FrameFactory::instance()));
 		else if (ext == L"m4a" || ext == L"m4b" || ext == L"m4r" || ext == L"mp4" || ext == L"aac")
 			filePtr.reset(new TagLib::MP4::File(ioStream, readAudioProperties, audioPropertiesStyle));
 		else if (ext == L"wma" || ext == L"asf")

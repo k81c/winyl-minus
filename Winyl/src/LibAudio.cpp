@@ -18,6 +18,7 @@
 #include "stdafx.h"
 #include "resource.h"
 #include "LibAudio.h"
+#include "AudioLog.h"
 #include "WinylWnd.h"
 #include "FileSystem.h"
 //#include <regex>
@@ -92,7 +93,12 @@ bool LibAudio::Init(WinylWnd* wnd, int driver, int device, bool isBit32, bool is
 		// it fails to set the DirectSound "cooperative level" or create the primary buffer.
 		// Setting the cooperative level is what requires the window handle, hence the suspicion that's what's wrong
 		if (!BASS_Init(bassDevice, 44100, BASS_DEVICE_DSOUND, wndWinyl->Wnd(), NULL))
+		{
+			int err = BASS_ErrorGetCode();
+			AudioLog::PostError(std::wstring(L"BASS_Init (DirectSound) failed: ") + AudioLog::BassErrorStr(err));
 			return false;
+		}
+		AudioLog::PostInfo(L"BASS_Init OK (DirectSound)");
 
 		dwSampleEx = 0;
 
@@ -152,8 +158,8 @@ bool LibAudio::Init(WinylWnd* wnd, int driver, int device, bool isBit32, bool is
 #else
 		programPath.append(L"x64\\");
 #endif // _WIN64
-#endif // NDEBUG
-
+#endif  NDEBUG
+		/*
 		// Load BASS format plugins (WAV, MP3, OGG, AIFF included in BASS)
 		verify(BASS_PluginLoad((const char*)(programPath + L"Bass\\bassflac.dll").c_str(), BASS_UNICODE));
 		verify(BASS_PluginLoad((const char*)(programPath + L"Bass\\bass_ape.dll").c_str(), BASS_UNICODE));
@@ -165,6 +171,7 @@ bool LibAudio::Init(WinylWnd* wnd, int driver, int device, bool isBit32, bool is
 		verify(BASS_PluginLoad((const char*)(programPath + L"Bass\\basswv.dll").c_str(), BASS_UNICODE));
 		verify(BASS_PluginLoad((const char*)(programPath + L"Bass\\bass_mpc.dll").c_str(), BASS_UNICODE));
 		verify(BASS_PluginLoad((const char*)(programPath + L"Bass\\bass_tta.dll").c_str(), BASS_UNICODE));
+		*/
 	}
 
 	BASS_FX_GetVersion(); // To link bass_fx.lib
@@ -808,9 +815,11 @@ HSTREAM LibAudio::OpenMediaFile(const std::wstring& file, QWORD* outByteLength, 
 
 	if (streamFile == NULL)
 	{
+		int err = BASS_ErrorGetCode();
 		if (outError)
-			*outError = BASS_ErrorGetCode();
-
+			*outError = err;
+		AudioLog::PostError(std::wstring(L"BASS_StreamCreateFile failed: ")
+			+ AudioLog::BassErrorStr(err) + L" - " + file);
 		return NULL;
 	}
 
@@ -874,8 +883,18 @@ HSTREAM LibAudio::OpenMediaURL(const std::wstring& url, int* outError)
 	else
 		streamFile = BASS_StreamCreateURL((char*)url.c_str(), 0, BASS_UNICODE|BASS_STREAM_BLOCK|BASS_STREAM_DECODE|BASS_SAMPLE_FLOAT, NULL, 0);
 
-	if (streamFile == NULL && outError)
-		*outError = BASS_ErrorGetCode();
+	if (streamFile == NULL)
+	{
+		int err = BASS_ErrorGetCode();
+		if (outError)
+			*outError = err;
+		AudioLog::PostError(std::wstring(L"BASS_StreamCreateURL failed: ")
+			+ AudioLog::BassErrorStr(err) + L" - " + url);
+	}
+	else
+	{
+		AudioLog::PostInfo(std::wstring(L"Radio connected: ") + url);
+	}
 
 	return streamFile;
 }
@@ -1035,7 +1054,15 @@ bool LibAudio::StartPlayDS(bool isFile, bool needFade, bool gaplessResume)
 		}
 
 		if (!isMediaPause)
-			return BASS_ChannelPlay(streamMixer, FALSE) ? true : false;
+		{
+			bool ok = BASS_ChannelPlay(streamMixer, FALSE) != 0;
+			if (!ok)
+				AudioLog::PostError(std::wstring(L"StartPlayDS BASS_ChannelPlay failed: ")
+					+ AudioLog::BassErrorStr(BASS_ErrorGetCode()));
+			else
+				AudioLog::PostInfo(L"StartPlayDS OK");
+			return ok;
+		}
 
 		return true;
 }
@@ -1122,7 +1149,7 @@ bool LibAudio::StartPlayWASAPI(bool isFile, bool needFade, bool gaplessResume)
 
 	ApplyEqualizer();
 
-	BASS_Mixer_StreamAddChannel(streamMixer, streamPlay, BASS_MIXER_DOWNMIX|BASS_MIXER_BUFFER);
+	BASS_Mixer_StreamAddChannel(streamMixer, streamPlay, BASS_MIXER_CHAN_DOWNMIX|BASS_MIXER_CHAN_BUFFER);
 	streamMixerCopyWASAPI = streamMixer;
 
 	if (!isMediaPause)
@@ -1202,9 +1229,24 @@ bool LibAudio::StartPlayASIO(bool isFile, bool needFade, bool gaplessResume)
 	// Reset all channels
 	if (!BASS_ASIO_Stop())
 	{
-		if (BASS_ASIO_ErrorGetCode() == BASS_ERROR_INIT &&
-			!BASS_ASIO_Init(bassDevice, 0)) // The audio output device encountered an error.
-			return false;
+		int asioErr = BASS_ASIO_ErrorGetCode();
+		if (asioErr == BASS_ERROR_INIT)
+		{
+			AudioLog::PostWarn(std::wstring(L"BASS_ASIO_Stop: not init, trying BASS_ASIO_Init: ")
+				+ AudioLog::BassErrorStr(asioErr));
+			if (!BASS_ASIO_Init(bassDevice, 0))
+			{
+				AudioLog::PostError(std::wstring(L"BASS_ASIO_Init failed: ")
+					+ AudioLog::BassErrorStr(BASS_ASIO_ErrorGetCode()));
+				return false;
+			}
+			AudioLog::PostInfo(L"BASS_ASIO_Init OK");
+		}
+		else
+		{
+			AudioLog::PostWarn(std::wstring(L"BASS_ASIO_Stop warning: ")
+				+ AudioLog::BassErrorStr(asioErr));
+		}
 	}
 	BASS_ASIO_ChannelReset(FALSE, -1, BASS_ASIO_RESET_ENABLE|BASS_ASIO_RESET_JOIN);
 
@@ -1220,13 +1262,22 @@ bool LibAudio::StartPlayASIO(bool isFile, bool needFade, bool gaplessResume)
 	BASS_ASIO_ChannelSetRate(FALSE, asioChannel, ci.freq); // set the source rate
 	if (!BASS_ASIO_SetRate(ci.freq)) // try to set the device rate too (saves resampling)
 	{
+		AudioLog::PostWarn(std::wstring(L"BASS_ASIO_SetRate(")
+			+ std::to_wstring(ci.freq) + L") failed, trying 48000/44100: "
+			+ AudioLog::BassErrorStr(BASS_ASIO_ErrorGetCode()));
 		if (!BASS_ASIO_SetRate(48000))
 			BASS_ASIO_SetRate(44100);
 	}
 	
 	if (!isMediaPause)
 	{
-		BASS_ASIO_Start(0, 0);
+		if (!BASS_ASIO_Start(0, 0))
+			AudioLog::PostError(std::wstring(L"BASS_ASIO_Start failed: ")
+				+ AudioLog::BassErrorStr(BASS_ASIO_ErrorGetCode()));
+		else
+			AudioLog::PostInfo(std::wstring(L"StartPlayASIO OK: ")
+				+ std::to_wstring(ci.freq) + L"Hz "
+				+ std::to_wstring(ci.chans) + L"ch");
 		eventBuffer->Set();
 		eventPause->Set();
 	}
@@ -1322,6 +1373,7 @@ void LibAudio::RunThreadRadio()
 		}
 		else if (url != urlThis) // URL changed while loading, reload
 		{
+			AudioLog::PostInfo(std::wstring(L"Radio: URL changed, reloading -> ") + urlThis);
 			BASS_StreamFree(streamRadio);
 			continue;
 		}
@@ -1363,6 +1415,8 @@ LibAudio::Error LibAudio::StartRadio(int error)
 			streamMixer = NULL;
 		}
 
+		AudioLog::PostError(std::wstring(L"StartRadio: stream is NULL, error=")
+			+ AudioLog::BassErrorStr(error));
 		switch (error)
 		{
 		case BASS_ERROR_INIT:
@@ -1378,10 +1432,14 @@ LibAudio::Error LibAudio::StartRadio(int error)
 
 	// http://www.un4seen.com/forum/?topic=12314.0;hl=get+bitrate
 	QWORD bufLen = BASS_StreamGetFilePosition(streamPlay, BASS_FILEPOS_END);
-	if (bufLen != -1)
+	float bitrate = 0;
+	BASS_ChannelGetAttribute(streamPlay, BASS_ATTRIB_BITRATE, &bitrate);
+	radioBitrate = (int)bitrate;
+	/* if (bufLen != -1)
 		radioBitrate = (int)(bufLen * 8 / BASS_GetConfig(BASS_CONFIG_NET_BUFFER));
 	else
 		radioBitrate = 0;
+	*/
 
 	BASS_ChannelSetSync(streamPlay, BASS_SYNC_META, 0, SyncRadioMeta, this);
 

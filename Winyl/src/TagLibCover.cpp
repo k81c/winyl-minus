@@ -17,7 +17,6 @@
 
 #include "stdafx.h"
 #include "TagLibCover.h"
-#define TAGLIB_STATIC
 #include "taglib/tag.h"
 #include "taglib/fileref.h"
 #include "taglib/tfilestream.h"
@@ -402,8 +401,8 @@ void TagLibCover::ReadCoverFromASFTags(TagLib::ASF::Tag* tag)
 void TagLibCover::ReadCoverFromMP4Tags(TagLib::MP4::Tag* tag)
 {
 	// Search for an item with a cover and read it
-	const TagLib::MP4::ItemListMap& mapItems = tag->itemMap();
-	TagLib::MP4::ItemListMap::ConstIterator itmap = mapItems.find("covr");
+	const auto& mapItems = tag->itemMap();
+	auto itmap = mapItems.find("covr");
 	if (itmap != mapItems.end())
 	{
 		const TagLib::MP4::Item& item = itmap->second;

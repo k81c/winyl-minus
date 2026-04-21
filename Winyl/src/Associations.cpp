@@ -17,7 +17,6 @@
 
 #include "stdafx.h"
 #include "Associations.h"
-
 Associations::Associations()
 {
 

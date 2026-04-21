@@ -1,0 +1,23 @@
+{
+  "name": "winyl",
+  "version-string": "3.x",
+  "builtin-baseline": "dddca6fa87f177e0678e2545c4b4636a44aa05bd",
+  "dependencies": [
+    {
+      "name": "pugixml",
+      "version>=": "1.15"
+    },
+    {
+      "name": "sqlite3",
+      "version>=": "3.49.1",
+      "features": [
+        "fts4",
+        "rtree"
+      ]
+    },
+    {
+      "name": "taglib",
+      "version>=": "2.0"
+    }
+  ]
+}

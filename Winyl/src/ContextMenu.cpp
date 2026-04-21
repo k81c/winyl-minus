@@ -140,6 +140,9 @@ void ContextMenu::FillMainMenu()
 //	::AppendMenu(mainMenu, MF_STRING, ID_MENU_ABOUT, L"Check for Updates");
 	::AppendMenu(mainMenu, MF_STRING, ID_MENU_ABOUT, lang->GetLine(Lang::MainMenu, 27));
 //	::AppendMenu(mainMenu, MF_STRING, ID_MENU_DONATE, lang->GetLine(Lang::MAIN_MENU, 28));
+
+	::AppendMenu(mainMenu, MF_SEPARATOR, NULL, NULL);
+	::AppendMenu(mainMenu, MF_STRING, ID_MENU_AUDIOLOG, L"Audio Log");
 }
 
 void ContextMenu::FillTrayMenu()
@@ -496,6 +499,14 @@ void ContextMenu::CheckMiniPlayer(bool isCheck)
 		::CheckMenuItem(mainMenu, ID_MENU_MINI, MF_BYCOMMAND|MF_CHECKED);
 	else
 		::CheckMenuItem(mainMenu, ID_MENU_MINI, MF_BYCOMMAND|MF_UNCHECKED);
+}
+
+void ContextMenu::CheckAudioLog(bool isCheck)
+{
+	if (isCheck)
+		::CheckMenuItem(mainMenu, ID_MENU_AUDIOLOG, MF_BYCOMMAND|MF_CHECKED);
+	else
+		::CheckMenuItem(mainMenu, ID_MENU_AUDIOLOG, MF_BYCOMMAND|MF_UNCHECKED);
 }
 
 void ContextMenu::EnableMiniPlayer(bool isEnable)

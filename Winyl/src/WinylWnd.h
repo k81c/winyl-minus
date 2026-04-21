@@ -55,6 +55,7 @@
 #include "SkinMini.h"
 #include "SkinAlpha.h"
 #include "Radio.h"
+#include "AudioLogWnd.h"
 #include "Win7TaskBar.h"
 #include "DlgSmart.h"
 #include "Messengers.h"
@@ -141,6 +142,7 @@ private:
 
 	//CSHOUTcast radio; // Shoutcast radio
 	Radio radio; // Radio
+	AudioLogWnd audioLogWnd; // Audio Log console window
 
 	HotKeys hotKeys; // Global hotkeys
 

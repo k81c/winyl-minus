@@ -20,19 +20,10 @@
 
 FutureWin::FutureWin()
 {
-	OSVERSIONINFO osVersion = {};
-	osVersion.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
-	::GetVersionEx(&osVersion);
-
-	if (osVersion.dwMajorVersion >= 6)
-	{
-		isVistaOrLater = true;
-
-		if (osVersion.dwMinorVersion >= 1 || osVersion.dwMajorVersion > 6)
-			isSevenOrLater = true;
-		if (osVersion.dwMinorVersion >= 2 || osVersion.dwMajorVersion > 6)
-			isEightOrLater = true;
-	}
+	// Win10以降を前提とするためバージョンチェック不要
+	isVistaOrLater = true;
+	isSevenOrLater = true;
+	isEightOrLater = true;
 
 	handleTheme = ::OpenThemeData(NULL, L"Window");
 
@@ -48,7 +39,7 @@ FutureWin::FutureWin()
 		LoadKernel32Functions();
 		LoadUser32Functions();
 		LoadComctl32Functions();
-		LoadShell32Functions();
+		// LoadShell32Functions();
 		LoadDwmApiFunctions();
 		LoadUxThemeFunctions();
 	}
@@ -66,7 +57,7 @@ FutureWin::~FutureWin()
 		::FreeLibrary(libUser32);
 
 	if (libComctl32)
-		::FreeLibrary(libShell32);
+		::FreeLibrary(libComctl32);
 
 	if (libShell32)
 		::FreeLibrary(libShell32);

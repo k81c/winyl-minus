@@ -60,6 +60,7 @@ Note: it is compiling under VS 2005 (without SP1) with including only header fil
 #include <windows.h>
 #include <windowsx.h>
 #include <tchar.h>
+#include <stdlib.h>
 
 #ifdef IsMaximized
 #undef IsMaximized
@@ -157,6 +158,7 @@ extern FutureWin* futureWin;
 #define UWM_COVERDONE    WM_USER + 137
 #define UWM_SEARCHDONE   WM_USER + 138
 #define UWM_TIMERTHREAD  WM_USER + 139
+#define UWM_AUDIOLOG     WM_USER + 140
 
 
 

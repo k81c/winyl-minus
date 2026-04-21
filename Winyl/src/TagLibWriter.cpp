@@ -18,7 +18,6 @@
 #include "stdafx.h"
 #include "TagLibWriter.h"
 #include "UTF.h"
-#define TAGLIB_STATIC
 #include "taglib/tag.h"
 #include "taglib/fileref.h"
 #include "taglib/tfilestream.h"
@@ -115,7 +114,7 @@ bool TagLibWriter::SaveFileTagsToTagLibFile(const TagLibReader::File& f)
 		lyrics.SaveLyricsToTagLibFile(f, version);
 		cover.SaveCoverToTagLibFile(f);
 
-		return mpeg->save(type, true, version, false);
+		return mpeg->save(type, TagLib::File::StripOthers, static_cast<TagLib::ID3v2::Version>(version), TagLib::File::DoNotDuplicate);
 	}
 	else if (TagLib::APE::File* ape = dynamic_cast<TagLib::APE::File*>(f.file()))
 	{
@@ -200,7 +199,7 @@ bool TagLibWriter::SaveFileTagsToTagLibFile(const TagLibReader::File& f)
 			cover.SaveCoverToTagLibFile(f);
 
 			// Do not strip info tag.
-			return riff_wav->save(TagLib::RIFF::WAV::File::ID3v2, false, version);
+			return riff_wav->save(TagLib::RIFF::WAV::File::ID3v2, TagLib::File::StripNone, static_cast<TagLib::ID3v2::Version>(version));
 		}
 		else if (TagLib::RIFF::AIFF::File* riff_aiff = dynamic_cast<TagLib::RIFF::AIFF::File*>(riff))
 		{

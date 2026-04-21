@@ -18,7 +18,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// English (United States) resources
+// âpåÍ (ïƒçë) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
@@ -577,8 +577,8 @@ IDI_ICON_LANG           ICON                    "res\\Lang.ico"
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 3,3,1,0
- PRODUCTVERSION 3,3,1,0
+ FILEVERSION 3,4,0,0
+ PRODUCTVERSION 3,4,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -593,14 +593,14 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "Winyl Player"
-            VALUE "FileDescription", "Winyl"
-            VALUE "FileVersion", "3.3.1.0"
+            VALUE "CompanyName", "Winyl Player minus"
+            VALUE "FileDescription", "Winyl minus"
+            VALUE "FileVersion", "3.4.0.0"
             VALUE "InternalName", "Winyl.exe"
-            VALUE "LegalCopyright", "Copyright (C) 2009-2018 Winyl Player.  All rights reserved."
+            VALUE "LegalCopyright", "Copyright (C) 2009-2026 Winyl Player minus.  All rights reserved."
             VALUE "OriginalFilename", "Winyl.exe"
             VALUE "ProductName", "Winyl"
-            VALUE "ProductVersion", "3.3.1.0"
+            VALUE "ProductVersion", "3.4.0.0"
         END
     END
     BLOCK "VarFileInfo"
@@ -751,7 +751,7 @@ BEGIN
 END
 #endif    // APSTUDIO_INVOKED
 
-#endif    // English (United States) resources
+#endif    // âpåÍ (ïƒçë) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

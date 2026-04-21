@@ -17,189 +17,84 @@
 
 #include "stdafx.h"
 #include "Radio.h"
-#include "RadioList.h"
+#include "RadioLoader.h"
+#include "UTF.h"
+
+#include <algorithm>
 
 Radio::Radio()
 {
-
 }
 
 Radio::~Radio()
 {
+}
 
+bool Radio::LoadFromFile(const std::wstring& programPath)
+{
+	std::wstring xmlPath = programPath + L"radio_stations.xml";
+	auto result = winyl::RadioLoader::Load(xmlPath);
+	if (result)
+	{
+		stations_ = std::move(*result);
+		return true;
+	}
+	// File missing or fatal parse error – continue with an empty list.
+	// The radio tree will simply show no stations.
+	stations_.clear();
+	return false;
 }
 
 bool Radio::LoadTree(SkinTree* skinTree, TreeNodeUnsafe node)
 {
-	// http://www.181.fm - http://www.181.fm/index.php?p=mp3links
-	// http://somafm.com
-	// http://977music.com/index.php?p=custom_page&page_name=SHOUTcast
-	// http://www.di-radio.com
-	// http://www.radioparadise.com - http://www.radioparadise.com/rp_2.php?#name=Listen&file=links
-	// http://megarockradio.net - http://www.megarockradio.net/player - http://megarockradio.net/asx/radio.pls
-
-
-
 	skinTree->SetControlRedraw(false);
-	
-	skinTree->InsertRadio(node, L"181.FM", L"181.FM");
-	skinTree->InsertRadio(node, L"SomaFM.com", L"SomaFM.com");
-	skinTree->InsertRadio(node, L"997music.com", L"997music.com");
-	skinTree->InsertRadio(node, L"DI-Radio.com", L"DI-Radio.com");
-	skinTree->InsertRadio(node, L"MegarockRadio.net", L"MegarockRadio.net");
-	skinTree->InsertRadio(node, L"RadioParadise.com", L"RadioParadise.com");
+
+	for (const auto& station : stations_)
+	{
+		skinTree->InsertRadio(node, station.name, station.name);
+	}
 
 	skinTree->SetControlRedraw(true);
-
 	return true;
 }
 
-bool Radio::LoadList(SkinList* skinList, const std::wstring& genre)
+bool Radio::LoadList(SkinList* skinList, const std::wstring& stationName)
 {
-	int count = 0;
+	// Locate the station whose name matches the clicked tree node.
+	auto it = std::find_if(
+		stations_.cbegin(), stations_.cend(),
+		[&stationName](const winyl::RadioStation& s) { return s.name == stationName; });
 
-	if (genre == L"181.FM")
+	if (it == stations_.cend())
+		return false;
+
+	skinList->SetControlRedraw(false);
+	skinList->DeleteAllNode();
+	skinList->EnableRadio(true);
+	skinList->SetViewPlaylist(true);
+
+	for (const auto& program : it->programs)
 	{
-		skinList->SetControlRedraw(false);
-		skinList->DeleteAllNode();
-		skinList->EnableRadio(true);
-		skinList->SetViewPlaylist(true);
+		// url is validated ASCII, so UTF-16 conversion is lossless.
+		const std::wstring url16 = UTF::UTF16S(program.url);
 
-		std::size_t size = std::size(radio_181);
-		assert(size % 3 == 0);
-		for (std::size_t i = 0; i < size; i += 3)
+		ListNodeUnsafe listNode =
+			skinList->InsertTrack(nullptr, url16, 0, 0, 0, 0, 0, 0);
+
+		// Artist = "StationName" or "StationName: Genre"
+		std::wstring artist = it->name;
+		if (!program.genre.empty())
 		{
-			count++;
-			ListNodeUnsafe node = skinList->InsertTrack(nullptr, radio_181[i + 2], 0, 0, 0, 0, 0, 0);
-
-			skinList->SetNodeString(node, SkinListElement::Type::Artist, std::wstring(L"181.FM: ") + radio_181[i]);
-			skinList->SetNodeString(node, SkinListElement::Type::Title, radio_181[i + 1]);
-			skinList->SetNodeString(node, SkinListElement::Type::Time, L"8:88");
+			artist += L": ";
+			artist += program.genre;
 		}
 
-		skinList->ResetIndex();
-		skinList->SetControlRedraw(true);
-	}
-	else if (genre == L"997music.com")
-	{
-		skinList->SetControlRedraw(false);
-		skinList->DeleteAllNode();
-		skinList->EnableRadio(true);
-		skinList->SetViewPlaylist(true);
-
-		std::size_t size = std::size(radio_977);
-		assert(size % 2 == 0);
-		for (std::size_t i = 0; i < size; i += 2)
-		{
-			count++;
-			ListNodeUnsafe node = skinList->InsertTrack(nullptr, radio_977[i + 1], 0, 0, 0, 0, 0, 0);
-
-			skinList->SetNodeString(node, SkinListElement::Type::Artist, L"997music.com");
-			skinList->SetNodeString(node, SkinListElement::Type::Title, radio_977[i]);
-			skinList->SetNodeString(node, SkinListElement::Type::Time, L"8:88");
-		}
-
-		skinList->ResetIndex();
-		skinList->SetControlRedraw(true);
-	}
-	else if (genre == L"SomaFM.com")
-	{
-		skinList->SetControlRedraw(false);
-		skinList->DeleteAllNode();
-		skinList->EnableRadio(true);
-		skinList->SetViewPlaylist(true);
-
-		std::size_t size = std::size(radio_Soma);
-		assert(size % 2 == 0);
-		for (std::size_t i = 0; i < size; i += 2)
-		{
-			count++;
-			ListNodeUnsafe node = skinList->InsertTrack(nullptr, radio_Soma[i + 1], 0, 0, 0, 0, 0, 0);
-
-			skinList->SetNodeString(node, SkinListElement::Type::Artist, L"SomaFM.com");
-			skinList->SetNodeString(node, SkinListElement::Type::Title, radio_Soma[i]);
-			skinList->SetNodeString(node, SkinListElement::Type::Time, L"8:88");
-		}
-
-		skinList->ResetIndex();
-		skinList->SetControlRedraw(true);
-	}
-	else if (genre == L"DI-Radio.com")
-	{
-		skinList->SetControlRedraw(false);
-		skinList->DeleteAllNode();
-		skinList->EnableRadio(true);
-		skinList->SetViewPlaylist(true);
-
-		std::size_t size = std::size(radio_DI);
-		assert(size % 2 == 0);
-		for (std::size_t i = 0; i < size; i += 2)
-		{
-			//count++;
-			ListNodeUnsafe node = skinList->InsertTrack(nullptr, radio_DI[i + 1], 0, 0, 0, 0, 0, 0);
-
-			skinList->SetNodeString(node, SkinListElement::Type::Artist, L"DI-Radio.com");
-			skinList->SetNodeString(node, SkinListElement::Type::Title, radio_DI[i]);
-			skinList->SetNodeString(node, SkinListElement::Type::Time, L"8:88");
-		}
-
-		skinList->ResetIndex();
-		skinList->SetControlRedraw(true);
-	}
-	else if (genre == L"RadioParadise.com")
-	{
-		skinList->SetControlRedraw(false);
-		skinList->DeleteAllNode();
-		skinList->EnableRadio(true);
-		skinList->SetViewPlaylist(true);
-
-		ListNodeUnsafe node = skinList->InsertTrack(nullptr, L"https://www.radioparadise.com/m3u/aac-320.m3u", 0, 0, 0, 0, 0, 0);
-
-		skinList->SetNodeString(node, SkinListElement::Type::Artist, L"RadioParadise.com");
-		skinList->SetNodeString(node, SkinListElement::Type::Title, L"Radio Paradise (320k AAC)");
-		skinList->SetNodeString(node, SkinListElement::Type::Time, L"8:88");
-
-		node = skinList->InsertTrack(nullptr, L"http://www.radioparadise.com/m3u/aac-128.m3u", 0, 0, 0, 0, 0, 0);
-
-		skinList->SetNodeString(node, SkinListElement::Type::Artist, L"RadioParadise.com");
-		skinList->SetNodeString(node, SkinListElement::Type::Title, L"Radio Paradise (128k AAC)");
-		skinList->SetNodeString(node, SkinListElement::Type::Time, L"8:88");
-
-		node = skinList->InsertTrack(nullptr, L"http://www.radioparadise.com/m3u/mp3-192.m3u", 0, 0, 0, 0, 0, 0);
-
-		skinList->SetNodeString(node, SkinListElement::Type::Artist, L"RadioParadise.com");
-		skinList->SetNodeString(node, SkinListElement::Type::Title, L"Radio Paradise (192k MP3)");
-		skinList->SetNodeString(node, SkinListElement::Type::Time, L"8:88");
-
-		node = skinList->InsertTrack(nullptr, L"http://stream-dc1.radioparadise.com/rp_192m.ogg", 0, 0, 0, 0, 0, 0);
-
-		skinList->SetNodeString(node, SkinListElement::Type::Artist, L"RadioParadise.com");
-		skinList->SetNodeString(node, SkinListElement::Type::Title, L"Radio Paradise (192k OGG)");
-		skinList->SetNodeString(node, SkinListElement::Type::Time, L"8:88");
-
-		skinList->ResetIndex();
-		skinList->SetControlRedraw(true);
-	}
-	else if (genre == L"MegarockRadio.net")
-	{
-		skinList->SetControlRedraw(false);
-		skinList->DeleteAllNode();
-		skinList->EnableRadio(true);
-		skinList->SetViewPlaylist(true);
-
-		ListNodeUnsafe node = skinList->InsertTrack(nullptr, L"http://megarockradio.net/asx/radio.pls", 0, 0, 0, 0, 0, 0);
-
-		skinList->SetNodeString(node, SkinListElement::Type::Artist, L"MegarockRadio.net");
-		skinList->SetNodeString(node, SkinListElement::Type::Title, L"Megarock Radio (320k MP3)");
-		skinList->SetNodeString(node, SkinListElement::Type::Time, L"8:88");
-
-		skinList->ResetIndex();
-		skinList->SetControlRedraw(true);
+		skinList->SetNodeString(listNode, SkinListElement::Type::Artist, artist);
+		skinList->SetNodeString(listNode, SkinListElement::Type::Title, program.name);
+		skinList->SetNodeString(listNode, SkinListElement::Type::Time, L"8:88");
 	}
 
+	skinList->ResetIndex();
+	skinList->SetControlRedraw(true);
 	return true;
 }
-
-
-
-

@@ -49,6 +49,7 @@ public:
 	void CheckPopupPosition(int pos);
 	void CheckSearch(int type);
 	void CheckMiniPlayer(bool isCheck);
+	void CheckAudioLog(bool isCheck);
 	void CheckLyricsAlign(int align);
 	void CheckLyricsFontSize(int size);
 	void CheckLyricsFontBold(bool bold);

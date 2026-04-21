@@ -17,26 +17,27 @@
 
 #pragma once
 
-#include "SkinList.h"
-#include "SkinTree.h"
-#include "RadioStationData.h"
+#include <string>
 #include <vector>
 
-class Radio
+namespace winyl {
+
+// One stream/program within a station.
+// genre is optional (used by 181.FM-style stations that sub-categorise by genre).
+// url is stored as std::string because valid radio stream URLs are pure ASCII
+// (Punycode-encoded international domain names remain 7-bit clean).
+struct RadioProgram
 {
-public:
-	Radio();
-	virtual ~Radio();
-
-	// Load station list from <programPath>radio_stations.xml.
-	// Returns true on success, false if the file is missing or invalid
-	// (the station list will be empty in that case).
-	// Call once at startup; the file is not re-read after that.
-	bool LoadFromFile(const std::wstring& programPath);
-
-	bool LoadTree(SkinTree* skinTree, TreeNodeUnsafe node);
-	bool LoadList(SkinList* skinList, const std::wstring& stationName);
-
-private:
-	std::vector<winyl::RadioStation> stations_;
+    std::wstring genre;   // optional – empty means no genre prefix in Artist field
+    std::wstring name;
+    std::string  url;     // ASCII only; validated by RadioLoader::SanitizeUrl
 };
+
+// One top-level station shown as a tree node.
+struct RadioStation
+{
+    std::wstring              name;     // displayed in the tree and as Artist prefix
+    std::vector<RadioProgram> programs;
+};
+
+} // namespace winyl

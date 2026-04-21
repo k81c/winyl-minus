@@ -231,7 +231,8 @@ void DlgHotKeys::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 	std::wstring keyString = NameFromVKey(nChar);
 
-	// When press "Delete", "Backspace", "F12" or an undefined key remove the hotkey
+	// When press "Delete", "Backspace", "F12" or an u
+	// ined key remove the hotkey
 	// F12 note https://msdn.microsoft.com/en-us/library/windows/desktop/ms646309(v=vs.85).aspx
 	// The F12 key is reserved for use by the debugger at all times, so it should not be registered as a hot key.
 	// Even when you are not debugging an application, F12 is reserved in case a kernel-mode debugger or a just-in-time debugger is resident.

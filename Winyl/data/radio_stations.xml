@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Winyl Internet Radio Station List
+    
+    Schema:
+      <station name="...">
+        <program name="..." url="..."  [genre="..."] />
+      </station>
+
+    Notes:
+    - genre is optional. When present, the Artist field in the playlist reads
+      "StationName: Genre" instead of just "StationName".
+    - URLs must use ASCII / Punycode-encoded hostnames (no raw Unicode).
+    - Ampersands in query strings must be written as &amp;
+-->
+<radio-stations version="1">
+
+    <!-- ═══════════════════════════════════════════════════════ 181.FM ═══ -->
+    <station name="181.FM">
+        <!-- Pop -->
+        <program genre="Pop" name="Power 181 (Top 40)"
+                 url="http://www.181.fm/winamp.pls?station=181-power&amp;file=181-power.pls"/>
+        <program genre="Pop" name="Old School HipHop/RnB"
+                 url="http://www.181.fm/winamp.pls?station=181-oldschool&amp;file=181-oldschool.pls"/>
+        <program genre="Pop" name="UK top 40"
+                 url="http://www.181.fm/winamp.pls?station=181-uktop40&amp;file=181-uktop40.pls"/>
+        <program genre="Pop" name="The Vibe of Vegas"
+                 url="http://www.181.fm/winamp.pls?station=181-vibe&amp;file=181-vibe.pls"/>
+        <program genre="Pop" name="The Heart (Love Songs)"
+                 url="http://www.181.fm/winamp.pls?station=181-heart&amp;file=181-heart.pls"/>
+        <program genre="Pop" name="Smooth AC"
+                 url="http://www.181.fm/winamp.pls?station=181-smoothac&amp;file=181-smoothac.pls"/>
+        <program genre="Pop" name="The Office"
+                 url="http://www.181.fm/winamp.pls?station=181-office&amp;file=181-office.pls"/>
+        <program genre="Pop" name="The Mix"
+                 url="http://www.181.fm/winamp.pls?station=181-themix&amp;file=181-themix.pls"/>
+        <program genre="Pop" name="The Point"
+                 url="http://www.181.fm/winamp.pls?station=181-thepoint&amp;file=181-thepoint.pls"/>
+        <program genre="Pop" name="Party 181"
+                 url="http://www.181.fm/winamp.pls?station=181-party&amp;file=181-party.pls"/>
+        <!-- Rock -->
+        <program genre="Rock" name="The Buzz (Alt. Rock)"
+                 url="http://www.181.fm/winamp.pls?station=181-buzz&amp;file=181-buzz.pls"/>
+        <program genre="Rock" name="Classic Buzz (Alt)"
+                 url="http://www.181.fm/winamp.pls?station=181-classicbuzz&amp;file=181-classicbuzz.pls"/>
+        <program genre="Rock" name="The Rock! (Hard Rock)"
+                 url="http://www.181.fm/winamp.pls?station=181-hardrock&amp;file=181-hardrock.pls"/>
+        <program genre="Rock" name="Rock 181"
+                 url="http://www.181.fm/winamp.pls?station=181-rock&amp;file=181-rock.pls"/>
+        <program genre="Rock" name="Chloe @181.FM"
+                 url="http://www.181.fm/winamp.pls?station=181-chloe&amp;file=181-chloe.pls"/>
+        <program genre="Rock" name="The Eagle (Classic)"
+                 url="http://www.181.fm/winamp.pls?station=181-eagle&amp;file=181-eagle.pls"/>
+        <program genre="Rock" name="Rock 40 (Rock and Roll)"
+                 url="http://www.181.fm/winamp.pls?station=181-rock40&amp;file=181-rock40.pls"/>
+        <program genre="Rock" name="The Point"
+                 url="http://www.181.fm/winamp.pls?station=181-thepoint&amp;file=181-thepoint.pls"/>
+        <program genre="Rock" name="80s Hairband"
+                 url="http://www.181.fm/winamp.pls?station=181-hairband&amp;file=181-hairband.pls"/>
+        <!-- Urban -->
+        <program genre="Urban" name="The Beat (HipHop/R&amp;B)"
+                 url="http://www.181.fm/winamp.pls?station=181-beat&amp;file=181-beat.pls"/>
+        <program genre="Urban" name="Old School HipHop/RnB"
+                 url="http://www.181.fm/winamp.pls?station=181-oldschool&amp;file=181-oldschool.pls"/>
+        <program genre="Urban" name="True R&amp;B"
+                 url="http://www.181.fm/winamp.pls?station=181-rnb&amp;file=181-rnb.pls"/>
+        <program genre="Urban" name="The Box (Urban)"
+                 url="http://www.181.fm/winamp.pls?station=181-thebox&amp;file=181-thebox.pls"/>
+        <program genre="Urban" name="Jammin 181"
+                 url="http://www.181.fm/winamp.pls?station=181-jammin&amp;file=181-jammin.pls"/>
+        <program genre="Urban" name="Soul"
+                 url="http://www.181.fm/winamp.pls?station=181-soul&amp;file=181-soul.pls"/>
+        <!-- Dance -->
+        <program genre="Dance" name="Energy 98"
+                 url="http://www.181.fm/winamp.pls?station=181-energy98&amp;file=181-energy98.pls"/>
+        <program genre="Dance" name="Techno Club"
+                 url="http://www.181.fm/winamp.pls?station=181-technoclub&amp;file=181-technoclub.pls"/>
+        <program genre="Dance" name="Energy 93 (Euro EDM)"
+                 url="http://www.181.fm/winamp.pls?station=181-energy93&amp;file=181-energy93.pls"/>
+        <program genre="Dance" name="Studio 181"
+                 url="http://www.181.fm/winamp.pls?station=181-ball&amp;file=181-ball.pls"/>
+        <program genre="Dance" name="90s Dance"
+                 url="http://www.181.fm/winamp.pls?station=181-90sdance&amp;file=181-90sdance.pls"/>
+        <program genre="Dance" name="Chilled Out"
+                 url="http://www.181.fm/winamp.pls?station=181-chilled&amp;file=181-chilled.pls"/>
+        <program genre="Dance" name="The Vibe of Vegas"
+                 url="http://www.181.fm/winamp.pls?station=181-vibe&amp;file=181-vibe.pls"/>
+        <!-- Country -->
+        <program genre="Country" name="Kickin Country"
+                 url="http://www.181.fm/winamp.pls?station=181-kickincountry&amp;file=181-kickincountry.pls"/>
+        <program genre="Country" name="Real Country"
+                 url="http://www.181.fm/winamp.pls?station=181-realcountry&amp;file=181-realcountry.pls"/>
+        <program genre="Country" name="90s Country"
+                 url="http://www.181.fm/winamp.pls?station=181-90scountry&amp;file=181-90scountry.pls"/>
+        <program genre="Country" name="US 181"
+                 url="http://www.181.fm/winamp.pls?station=181-us181&amp;file=181-us181.pls"/>
+        <program genre="Country" name="80s Country"
+                 url="http://www.181.fm/winamp.pls?station=181-80scountry&amp;file=181-80scountry.pls"/>
+        <program genre="Country" name="Highway 181"
+                 url="http://www.181.fm/winamp.pls?station=181-highway&amp;file=181-highway.pls"/>
+        <program genre="Country" name="Front Porch (Bluegrass)"
+                 url="http://www.181.fm/winamp.pls?station=181-frontporch&amp;file=181-frontporch.pls"/>
+        <!-- Easy Listening -->
+        <program genre="Easy Listening" name="The Breeze"
+                 url="http://www.181.fm/winamp.pls?station=181-breeze&amp;file=181-breeze.pls"/>
+        <program genre="Easy Listening" name="Classical Guitar"
+                 url="http://www.181.fm/winamp.pls?station=181-classicalguitar&amp;file=181-classicalguitar.pls"/>
+        <program genre="Easy Listening" name="Classical Jazz"
+                 url="http://www.181.fm/winamp.pls?station=181-classicaljazz&amp;file=181-classicaljazz.pls"/>
+        <program genre="Easy Listening" name="Vocal Jazz"
+                 url="http://www.181.fm/winamp.pls?station=181-vocals&amp;file=181-vocals.pls"/>
+        <program genre="Easy Listening" name="BeBop Jazz"
+                 url="http://www.181.fm/winamp.pls?station=181-bebop&amp;file=181-bebop.pls"/>
+        <program genre="Easy Listening" name="Sensual World"
+                 url="http://www.181.fm/winamp.pls?station=181-sensual&amp;file=181-sensual.pls"/>
+        <program genre="Easy Listening" name="Fusion Jazz"
+                 url="http://www.181.fm/winamp.pls?station=181-fusionjazz&amp;file=181-fusionjazz.pls"/>
+        <program genre="Easy Listening" name="Trance Jazz"
+                 url="http://www.181.fm/winamp.pls?station=181-trancejazz&amp;file=181-trancejazz.pls"/>
+        <program genre="Easy Listening" name="True Blues"
+                 url="http://www.181.fm/winamp.pls?station=181-blues&amp;file=181-blues.pls"/>
+        <program genre="Easy Listening" name="Classical Music"
+                 url="http://www.181.fm/winamp.pls?station=181-classical&amp;file=181-classical.pls"/>
+        <program genre="Easy Listening" name="Acid Jazz"
+                 url="http://www.181.fm/winamp.pls?station=181-acidjazz&amp;file=181-acidjazz.pls"/>
+        <!-- Latin -->
+        <program genre="Latin" name="Reggae Roots"
+                 url="http://www.181.fm/winamp.pls?station=181-reggae&amp;file=181-reggae.pls"/>
+        <program genre="Latin" name="Salsa"
+                 url="http://www.181.fm/winamp.pls?station=181-salsa&amp;file=181-salsa.pls"/>
+        <!-- Talk Radio -->
+        <program genre="Talk Radio" name="Comedy Club"
+                 url="http://www.181.fm/winamp.pls?station=181-comedy&amp;file=181-comedy.pls"/>
+        <!-- Oldies -->
+        <program genre="Oldies" name="Beatles"
+                 url="http://www.181.fm/winamp.pls?station=181-beatles&amp;file=181-beatles.pls"/>
+        <program genre="Oldies" name="Soul"
+                 url="http://www.181.fm/winamp.pls?station=181-soul&amp;file=181-soul.pls"/>
+        <program genre="Oldies" name="Mellow Gold"
+                 url="http://www.181.fm/winamp.pls?station=181-mellow&amp;file=181-mellow.pls"/>
+        <program genre="Oldies" name="Classic Hits 181"
+                 url="http://www.181.fm/winamp.pls?station=181-greatoldies&amp;file=181-greatoldies.pls"/>
+        <program genre="Oldies" name="Good Time Oldies"
+                 url="http://www.181.fm/winamp.pls?station=181-goodtime&amp;file=181-goodtime.pls"/>
+        <program genre="Oldies" name="Super 70s"
+                 url="http://www.181.fm/winamp.pls?station=181-70s&amp;file=181-70s.pls"/>
+        <!-- 80s Decade -->
+        <program genre="80s Decade" name="80s Country"
+                 url="http://www.181.fm/winamp.pls?station=181-80scountry&amp;file=181-80scountry.pls"/>
+        <program genre="80s Decade" name="Awesome 80s"
+                 url="http://www.181.fm/winamp.pls?station=181-awesome80s&amp;file=181-awesome80s.pls"/>
+        <program genre="80s Decade" name="Lite 80s"
+                 url="http://www.181.fm/winamp.pls?station=181-lite80s&amp;file=181-lite80s.pls"/>
+        <!-- 90s Decade -->
+        <program genre="90s Decade" name="Star 90s"
+                 url="http://www.181.fm/winamp.pls?station=181-star90s&amp;file=181-star90s.pls"/>
+        <program genre="90s Decade" name="90s Country"
+                 url="http://www.181.fm/winamp.pls?station=181-90scountry&amp;file=181-90scountry.pls"/>
+        <program genre="90s Decade" name="Lite 90s"
+                 url="http://www.181.fm/winamp.pls?station=181-lite90s&amp;file=181-lite90s.pls"/>
+        <program genre="90s Decade" name="90s Alternative"
+                 url="http://www.181.fm/winamp.pls?station=181-90salt&amp;file=181-90salt.pls"/>
+        <program genre="90s Decade" name="90s Dance"
+                 url="http://www.181.fm/winamp.pls?station=181-90sdance&amp;file=181-90sdance.pls"/>
+        <!-- Christmas -->
+        <program genre="Christmas" name="Kountry"
+                 url="http://www.181.fm/winamp.pls?station=181-xkkountry&amp;file=181-xkkountry.pls"/>
+        <program genre="Christmas" name="Classics"
+                 url="http://www.181.fm/winamp.pls?station=181-xtraditional&amp;file=181-xtraditional.pls"/>
+        <program genre="Christmas" name="Oldies"
+                 url="http://www.181.fm/winamp.pls?station=181-xoldies&amp;file=181-xoldies.pls"/>
+        <program genre="Christmas" name="Country"
+                 url="http://www.181.fm/winamp.pls?station=181-xcountry&amp;file=181-xcountry.pls"/>
+        <program genre="Christmas" name="Power"
+                 url="http://www.181.fm/winamp.pls?station=181-xpower&amp;file=181-xpower.pls"/>
+        <program genre="Christmas" name="Highway"
+                 url="http://www.181.fm/winamp.pls?station=181-xhighway&amp;file=181-xhighway.pls"/>
+        <program genre="Christmas" name="Soundtracks"
+                 url="http://www.181.fm/winamp.pls?station=181-xsoundtrax&amp;file=181-xsoundtrax.pls"/>
+        <program genre="Christmas" name="R&amp;B"
+                 url="http://www.181.fm/winamp.pls?station=181-xtrue&amp;file=181-xtrue.pls"/>
+        <program genre="Christmas" name="Rock"
+                 url="http://www.181.fm/winamp.pls?station=181-xrock&amp;file=181-xrock.pls"/>
+        <program genre="Christmas" name="Mix"
+                 url="http://www.181.fm/winamp.pls?station=181-xmix&amp;file=181-xmix.pls"/>
+        <program genre="Christmas" name="Fun"
+                 url="http://www.181.fm/winamp.pls?station=181-xfun&amp;file=181-xfun.pls"/>
+        <program genre="Christmas" name="Kids"
+                 url="http://www.181.fm/winamp.pls?station=181-xkids&amp;file=181-xkids.pls"/>
+        <program genre="Christmas" name="Blender"
+                 url="http://www.181.fm/winamp.pls?station=181-xblender&amp;file=181-xblender.pls"/>
+        <program genre="Christmas" name="Standards"
+                 url="http://www.181.fm/winamp.pls?station=181-xstandards&amp;file=181-xstandards.pls"/>
+        <program genre="Christmas" name="Spirit"
+                 url="http://www.181.fm/winamp.pls?station=181-xspirit&amp;file=181-xspirit.pls"/>
+        <program genre="Christmas" name="Smooth Jazz"
+                 url="http://www.181.fm/winamp.pls?station=181-xsmooth&amp;file=181-xsmooth.pls"/>
+        <program genre="Christmas" name="Gospel"
+                 url="http://www.181.fm/winamp.pls?station=181-xgospel&amp;file=181-xgospel.pls"/>
+        <program genre="Christmas" name="Swing"
+                 url="http://www.181.fm/winamp.pls?station=181-xswing&amp;file=181-xswing.pls"/>
+    </station>
+
+    <!-- ══════════════════════════════════════════════════ SomaFM.com ═══ -->
+    <station name="SomaFM.com">
+        <program name="BAGeL Radio"          url="https://somafm.com/bagel130.pls"/>
+        <program name="Beat Blender"         url="https://somafm.com/beatblender130.pls"/>
+        <program name="Black Rock FM"        url="https://somafm.com/brfm130.pls"/>
+        <program name="Boot Liquor"          url="https://somafm.com/bootliquor320.pls"/>
+        <program name="cliqhop idm"          url="https://somafm.com/cliqhop256.pls"/>
+        <program name="Covers"               url="https://somafm.com/covers130.pls"/>
+        <program name="Deep Space One"       url="https://somafm.com/deepspaceone130.pls"/>
+        <program name="DEF CON Radio"        url="https://somafm.com/defcon256.pls"/>
+        <program name="Digitalis"            url="https://somafm.com/digitalis130.pls"/>
+        <program name="Drone Zone"           url="https://somafm.com/dronezone256.pls"/>
+        <program name="Dub Step Beyond"      url="https://somafm.com/dubstep256.pls"/>
+        <program name="Fluid"                url="https://somafm.com/fluid130.pls"/>
+        <program name="Folk Forward"         url="https://somafm.com/folkfwd130.pls"/>
+        <program name="Groove Salad"         url="https://somafm.com/groovesalad256.pls"/>
+        <program name="Illinois Street Lounge" url="https://somafm.com/illstreet130.pls"/>
+        <program name="Indie Pop Rocks!"     url="https://somafm.com/indiepop130.pls"/>
+        <program name="Left Coast 70s"       url="https://somafm.com/seventies320.pls"/>
+        <program name="Lush"                 url="https://somafm.com/lush130.pls"/>
+        <program name="Metal Detector"       url="https://somafm.com/metal130.pls"/>
+        <program name="Mission Control"      url="https://somafm.com/missioncontrol130.pls"/>
+        <program name="PopTron"              url="https://somafm.com/poptron130.pls"/>
+        <program name="Secret Agent"         url="https://somafm.com/secretagent130.pls"/>
+        <program name="Seven Inch Soul"      url="https://somafm.com/7soul130.pls"/>
+        <program name="SF 10-33"             url="https://somafm.com/sf1033130.pls"/>
+        <program name="Sonic Universe"       url="https://somafm.com/sonicuniverse192.pls"/>
+        <program name="Space Station Soma"   url="https://somafm.com/spacestation130.pls"/>
+        <program name="Suburbs of Goa"       url="https://somafm.com/suburbsofgoa130.pls"/>
+        <program name="The Trip"             url="https://somafm.com/thetrip130.pls"/>
+        <program name="ThistleRadio"         url="https://somafm.com/thistle130.pls"/>
+        <program name="Underground 80s"      url="https://somafm.com/u80s256.pls"/>
+    </station>
+
+    <!-- ═════════════════════════════════════════════════ 977music.com ═══ -->
+    <!-- Note: tree label was previously "997music.com" (typo) – corrected. -->
+    <station name="977music.com">
+        <program name="80s"          url="http://977music.com/itunes/80s.pls"/>
+        <program name="90s"          url="http://www.977music.com/itunes/90s.pls"/>
+        <program name="Alternative"  url="http://www.977music.com/itunes/alternative.pls"/>
+        <program name="Classic Rock" url="http://www.977music.com/itunes/classicrock.pls"/>
+        <program name="Comedy"       url="http://www.977music.com/itunes/comedy.pls"/>
+        <program name="Country"      url="http://www.977music.com/977hicountry.pls"/>
+        <program name="Hitz"         url="http://977music.com/itunes/hitz.pls"/>
+        <program name="Jams"         url="http://www.977music.com/itunes/jamz.pls"/>
+        <program name="Mix"          url="http://www.977music.com/itunes/mix.pls"/>
+        <program name="Oldies"       url="http://www.977music.com/itunes/oldies.pls"/>
+        <program name="Smooth Jazz"  url="http://www.977music.com/itunes/jazz.pls"/>
+    </station>
+
+    <!-- ══════════════════════════════════════════════════ DI-Radio.com ═══ -->
+    <station name="DI-Radio.com">
+        <program name="9Axis Trance"           url="https://orion.shoutca.st/tunein/asx9axis.pls"/>
+        <program name="ALYF Recordings"        url="https://orion.shoutca.st/tunein/asxaiyf.pls"/>
+        <program name="ATG Trance"             url="https://orion.shoutca.st/tunein/asxcobley.pls"/>
+        <program name="Ahmed Romel Trance"     url="https://orion.shoutca.st/tunein/asxromel.pls"/>
+        <program name="Ambient and Lounge"     url="https://orion.shoutca.st/tunein/asxambient.pls"/>
+        <program name="Ambient Fantasy"        url="https://orion.shoutca.st/tunein/asxfantasy.pls"/>
+        <program name="Ambient Nature Sounds"  url="https://orion.shoutca.st/tunein/asxnature.pls"/>
+        <program name="Astra Trance"           url="https://orion.shoutca.st/tunein/astratrance.pls"/>
+        <program name="Atlas Corporation Trance" url="https://orion.shoutca.st/tunein/asxatlas.pls"/>
+        <program name="Blues Channel"          url="https://orion.shoutca.st/tunein/asxblues.pls"/>
+        <program name="Christmas Channel"      url="https://orion.shoutca.st/tunein/asxchristmas.pls"/>
+        <program name="Classic Rock Hits"      url="https://orion.shoutca.st/tunein/asxrock.pls"/>
+        <program name="Classical Channel"      url="https://orion.shoutca.st/tunein/asxclassical.pls"/>
+        <program name="Country Music"          url="https://orion.shoutca.st/tunein/asxcountry.pls"/>
+        <program name="DKR TecHouse"           url="https://orion.shoutca.st/tunein/asxdkr.pls"/>
+        <program name="Dance 80s"              url="https://orion.shoutca.st/tunein/asx80s.pls"/>
+        <program name="Dance 90s"              url="https://orion.shoutca.st/tunein/asx90s.pls"/>
+        <program name="Ektoplazm PsyRadio"     url="https://orion.shoutca.st/tunein/asxektoplazm.pls"/>
+        <program name="Electro Swing and Funk" url="https://orion.shoutca.st/tunein/asxpop.pls"/>
+        <program name="Emacore Trance"         url="https://orion.shoutca.st/tunein/asxemacore.pls"/>
+        <program name="Evergreen Hits"         url="https://orion.shoutca.st/tunein/asxoldies.pls"/>
+        <program name="French Skies Trance"    url="https://orion.shoutca.st/tunein/asxspies.pls"/>
+        <program name="Gate Of Paradise"       url="https://orion.shoutca.st/tunein/asxgate.pls"/>
+        <program name="Global Trance"          url="https://orion.shoutca.st/tunein/asxtrance.pls"/>
+        <program name="Heavy Metal"            url="https://orion.shoutca.st/tunein/asxmetal.pls"/>
+        <program name="House Channel"          url="https://orion.shoutca.st/tunein/asxcasw.pls"/>
+        <program name="Jazz Channel"           url="https://orion.shoutca.st/tunein/asxjyzz.pls"/>
+        <program name="Larix W. Trance"        url="https://orion.shoutca.st/tunein/asxlarix.pls"/>
+        <program name="Liftburg Trance"        url="https://orion.shoutca.st/tunein/asxtomas.pls"/>
+        <program name="Matt Paul Uplifting"    url="https://orion.shoutca.st/tunein/asxmatt.pls"/>
+        <program name="Movie Themes"           url="https://orion.shoutca.st/tunein/asxmovie.pls"/>
+        <program name="New Wave 80s"           url="https://orion.shoutca.st/tunein/asxwave.pls"/>
+        <program name="Nick Turner Trance"     url="https://orion.shoutca.st/tunein/asxturner.pls"/>
+        <program name="Ori Uplift Trance"      url="https://orion.shoutca.st/tunein/asxori.pls"/>
+        <program name="Paradise Trance"        url="https://orion.shoutca.st/tunein/asxatg.pls"/>
+        <program name="PowerMixNetwork House"  url="https://orion.shoutca.st/tunein/pmnstream1.pls"/>
+        <program name="PowerMixNetwork UNDGND" url="https://orion.shoutca.st/tunein/pmnstream2.pls"/>
+        <program name="PsychedelicTribe"       url="https://orion.shoutca.st/tunein/asxpsy.pls"/>
+        <program name="Pulsar Recordings"      url="https://orion.shoutca.st/tunein/asxpulsar.pls"/>
+        <program name="Reggae"                 url="https://orion.shoutca.st/tunein/asxreggae.pls"/>
+        <program name="Rik Tights Trance"      url="https://orion.shoutca.st/tunein/asxtights.pls"/>
+        <program name="Sean and Xander Trance" url="https://orion.shoutca.st/tunein/asxseanxander.pls"/>
+        <program name="Sonic Oblivion Trance"  url="https://orion.shoutca.st/tunein/asxoblivion.pls"/>
+        <program name="Sundance Recordings"    url="https://orion.shoutca.st/tunein/asxsundance.pls"/>
+        <program name="Techno Channel"         url="https://orion.shoutca.st/tunein/asxrik.pls"/>
+        <program name="The Space Trace"        url="https://orion.shoutca.st/tunein/asxalex.pls"/>
+        <program name="Victor Special Trance"  url="https://orion.shoutca.st/tunein/asxvictor.pls"/>
+    </station>
+
+    <!-- ═════════════════════════════════════════════ MegarockRadio.net ═══ -->
+    <station name="MegarockRadio.net">
+        <program name="Megarock Radio (320k MP3)" url="http://megarockradio.net/asx/radio.pls"/>
+    </station>
+
+    <!-- ══════════════════════════════════════════════ RadioParadise.com ═══ -->
+    <station name="RadioParadise.com">
+        <program name="Radio Paradise (320k AAC)" url="https://www.radioparadise.com/m3u/aac-320.m3u"/>
+        <program name="Radio Paradise (128k AAC)" url="http://www.radioparadise.com/m3u/aac-128.m3u"/>
+        <program name="Radio Paradise (192k MP3)" url="http://www.radioparadise.com/m3u/mp3-192.m3u"/>
+        <program name="Radio Paradise (192k OGG)" url="http://stream-dc1.radioparadise.com/rp_192m.ogg"/>
+    </station>
+
+</radio-stations>

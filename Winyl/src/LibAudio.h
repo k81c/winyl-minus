@@ -161,7 +161,7 @@ private:
 	bool bassNoVolume = false; // Disable volume control
 	bool bassNoEffect = false; // Disable all sound effects
 
-	BASS_CHANNELINFO oldci;
+	BASS_CHANNELINFO oldci = {};
 
 	//std::vector<int> channelsASIO;
 

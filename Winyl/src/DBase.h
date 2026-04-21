@@ -21,7 +21,7 @@
 #include <random>
 #include <chrono>
 #include "XmlFile.h"
-#include "sqlite3/sqlite3/src/sqlite3.h"
+#include <sqlite3.h>
 #include "SkinList.h"
 #include "SkinTree.h"
 #include "Language.h"

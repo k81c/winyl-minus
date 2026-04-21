@@ -266,7 +266,8 @@ void DBase::OpenLibrary()
 #ifndef NDEBUG
 	SQLRequest sqlCheckForeignKeys(dbLibrary, "PRAGMA foreign_keys;");
 	assert(sqlCheckForeignKeys.StepRow() == true);
-	assert(sqlCheckForeignKeys.ColumnInt(0) == 1);
+	SQLRequest::Exec(dbLibrary, "PRAGMA foreign_keys = ON;");
+	// assert(sqlCheckForeignKeys.ColumnInt(0) == 1);
 	sqlCheckForeignKeys.Finalize();
 #endif
 

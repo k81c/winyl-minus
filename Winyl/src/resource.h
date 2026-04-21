@@ -132,6 +132,7 @@
 #define ID_MENU_LYRICS_PROV_8           779
 #define ID_MENU_LYRICS_PROV_9           780
 #define ID_MENU_LYRICS_PROV_10          781
+#define ID_MENU_AUDIOLOG                782
 #define IDC_LIST_SKIN                   1003
 #define IDC_STATIC_PREVIEW              1004
 #define IDC_TEXT_AUTHOR                 1005

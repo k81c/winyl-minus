@@ -19,7 +19,6 @@
 #include "TagLibLyrics.h"
 #include "TagLibWriter.h"
 #include "UTF.h"
-#define TAGLIB_STATIC
 #include "taglib/tag.h"
 #include "taglib/fileref.h"
 #include "taglib/tfilestream.h"

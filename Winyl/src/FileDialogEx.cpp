@@ -349,14 +349,7 @@ bool FileDialogEx::DoModalFolderXP(HWND wnd)
 
 bool FileDialogEx::IsWindowsXP()
 {
-	OSVERSIONINFO osvi = {};
-	osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
-	::GetVersionEx(&osvi);
-
-	if (osvi.dwMajorVersion < 6)
-		return true;
-
-	return false;
+	return false; // Win10以降を前提
 }
 
 UINT_PTR FileDialogEx::OFNHookProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)

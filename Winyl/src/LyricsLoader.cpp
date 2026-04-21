@@ -186,7 +186,7 @@ bool LyricsLoader::LoadLyricsFromInternet(const std::wstring& artist, const std:
 		assert(providersCount == 8);
 
 		if (provider.empty())
-			lyrics = ProviderLyricsWikiaCom(urlArtist, urlTitle);
+			lyrics = ProviderLyricsWikiaCom(urlTitle, urlArtist);
 		else if (provider == providers[1])
 			lyrics = ProviderMusixmatchCom(urlArtist, urlTitle);
 		else if (provider == providers[2])
@@ -213,7 +213,7 @@ bool LyricsLoader::LoadLyricsFromInternet(const std::wstring& artist, const std:
 		std::string lyrics;
 
 		if (provider.empty())
-			lyrics = ProviderLyricsWikiaCom(urlArtist, urlTitle);
+			lyrics = ProviderLyricsWikiaCom(urlTitle, urlArtist);
 		else if (provider == providers[1])
 			lyrics = ProviderMusixmatchCom(urlArtist, urlTitle);
 
@@ -528,7 +528,7 @@ void LyricsLoader::FilterOutputTrim(std::string &str)
 	str.erase(str.find_last_not_of(" \t\r\n") + 1);
 }
 
-std::string LyricsLoader::ProviderLyricsWikiaCom(const std::string& urlArtist, const std::string& urlTitle)
+std::string LyricsLoader::ProviderLyricsWikiaCom(const std::string& urlTitle, const std::string& urlArtist)
 {
 	std::string lyrics;
 

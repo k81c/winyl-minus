@@ -16,6 +16,7 @@
 */
 
 #pragma once
+#include <string>
 #include <vector>
 
 class LyricsLoader
@@ -65,7 +66,7 @@ private:
 	void FilterOutputHtmlEncode(const std::string &src, std::size_t start, std::size_t end, std::string &dst);
 	void FilterOutputTrim(std::string &str);
 
-	std::string ProviderLyricsWikiaCom(const std::string& urlArtist, const std::string& urlTitle);
+	std::string ProviderLyricsWikiaCom(const std::string& urlTitle, const std::string& urlArtist);
 	std::string ProviderAZLyricsCom(const std::string& urlArtist, const std::string& urlTitle);
 	std::string ProviderMetroLyricsCom(const std::string& urlArtist, const std::string& urlTitle);
 	std::string ProviderSongLyricsCom(const std::string& urlArtist, const std::string& urlTitle);

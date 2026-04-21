@@ -55,33 +55,33 @@
 #	pragma comment(lib, "src/bass/x64/bassasio.lib")
 #endif
 
-#ifndef _WIN64
-#	ifndef NDEBUG
-#		pragma comment(lib, "src/sqlite3/Debug/sqlite3.lib")
-#	else
-#		pragma comment(lib, "src/sqlite3/Release/sqlite3.lib")
-#	endif
-#else // _WIN64
-#	ifndef NDEBUG
-#		pragma comment(lib, "src/sqlite3/x64/Debug/sqlite3.lib")
-#	else
-#		pragma comment(lib, "src/sqlite3/x64/Release/sqlite3.lib")
-#	endif
-#endif
+//#ifndef _WIN64
+//#	ifndef NDEBUG
+//#		pragma comment(lib, "src/sqlite3/Debug/sqlite3.lib")
+//#	else
+//#		pragma comment(lib, "src/sqlite3/Release/sqlite3.lib")
+//#	endif
+//#else // _WIN64
+//#	ifndef NDEBUG
+//#		pragma comment(lib, "src/sqlite3/x64/Debug/sqlite3.lib")
+//#	else
+//#		pragma comment(lib, "src/sqlite3/x64/Release/sqlite3.lib")
+//#	endif
+//#endif
 
-#ifndef _WIN64
-#	ifndef NDEBUG
-#		pragma comment(lib, "src/taglib/Debug/tag.lib")
-#	else
-#		pragma comment(lib, "src/taglib/Release/tag.lib")
-#	endif
-#else // _WIN64
-#	ifndef NDEBUG
-#		pragma comment(lib, "src/taglib/x64/Debug/tag.lib")
-#	else
-#		pragma comment(lib, "src/taglib/x64/Release/tag.lib")
-#	endif
-#endif
+//#ifndef _WIN64
+//#	ifndef NDEBUG
+//#		pragma comment(lib, "src/taglib/Debug/tag.lib")
+//#	else
+//#		pragma comment(lib, "src/taglib/Release/tag.lib")
+//#	endif
+//#else // _WIN64
+//#	ifndef NDEBUG
+//#		pragma comment(lib, "src/taglib/x64/Debug/tag.lib")
+//#	else
+//#		pragma comment(lib, "src/taglib/x64/Release/tag.lib")
+//#	endif
+//#endif
 
 
 

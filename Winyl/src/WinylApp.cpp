@@ -58,12 +58,8 @@ void WinylApp::Init()
 	// Remove file associations when start with /Unregister command line flag
 	if (cmdUnregister)
 	{
-		OSVERSIONINFO osVersion = {};
-		osVersion.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
-		::GetVersionEx(&osVersion);
-
 		Associations assoc;
-		assoc.RemoveAllAssoc(osVersion.dwMajorVersion >= 6 ? true : false);
+		assoc.RemoveAllAssoc(true); // Win10以降を前提
 		return;
 	}
 
