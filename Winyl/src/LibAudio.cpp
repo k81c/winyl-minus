@@ -159,7 +159,7 @@ bool LibAudio::Init(WinylWnd* wnd, int driver, int device, bool isBit32, bool is
 		programPath.append(L"x64\\");
 #endif // _WIN64
 #endif  NDEBUG
-		/*
+		
 		// Load BASS format plugins (WAV, MP3, OGG, AIFF included in BASS)
 		verify(BASS_PluginLoad((const char*)(programPath + L"Bass\\bassflac.dll").c_str(), BASS_UNICODE));
 		verify(BASS_PluginLoad((const char*)(programPath + L"Bass\\bass_ape.dll").c_str(), BASS_UNICODE));
@@ -171,7 +171,7 @@ bool LibAudio::Init(WinylWnd* wnd, int driver, int device, bool isBit32, bool is
 		verify(BASS_PluginLoad((const char*)(programPath + L"Bass\\basswv.dll").c_str(), BASS_UNICODE));
 		verify(BASS_PluginLoad((const char*)(programPath + L"Bass\\bass_mpc.dll").c_str(), BASS_UNICODE));
 		verify(BASS_PluginLoad((const char*)(programPath + L"Bass\\bass_tta.dll").c_str(), BASS_UNICODE));
-		*/
+		
 	}
 
 	BASS_FX_GetVersion(); // To link bass_fx.lib

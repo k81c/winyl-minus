@@ -6,12 +6,6 @@
     <LocalDebuggerEnvironment>PATH=$(ProjectDir)\data\x86
 $(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release and_debug|Win32'">
-    <LocalDebuggerWorkingDirectory>$(ProjectDir)\data</LocalDebuggerWorkingDirectory>
-    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerEnvironment>PATH=$(ProjectDir)\data\x86
-$(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LocalDebuggerWorkingDirectory>$(ProjectDir)\data</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
@@ -25,19 +19,13 @@ $(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
 $(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
     <LocalDebuggerAttach>false</LocalDebuggerAttach>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='release and_debug|x64'">
-    <LocalDebuggerWorkingDirectory>$(ProjectDir)\data</LocalDebuggerWorkingDirectory>
-    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerEnvironment>PATH=$(ProjectDir)\data\x64
-$(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
-    <LocalDebuggerAttach>false</LocalDebuggerAttach>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LocalDebuggerWorkingDirectory>$(ProjectDir)\data</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerEnvironment>PATH=$(ProjectDir)\data\x64
 $(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
-    <LocalDebuggerAmpDefaultAccelerator> </LocalDebuggerAmpDefaultAccelerator>
+    <LocalDebuggerAmpDefaultAccelerator>
+    </LocalDebuggerAmpDefaultAccelerator>
   </PropertyGroup>
   <PropertyGroup>
     <ShowAllFiles>false</ShowAllFiles>
